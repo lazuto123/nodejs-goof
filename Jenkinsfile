@@ -22,7 +22,7 @@ pipeline {
                                 }
                         }
                         steps {
-                                sh 'docker build -t mhilham987/nodejsgoof:0.1'
+                                sh 'docker build -t mhilham987/nodejsgoof:0.1 .'
 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 				sh 'docker push mhilham987/nodejsgoof:0.1'
                         }
