@@ -36,12 +36,12 @@ pipeline {
                         }
                         steps {
 				withCredentials([sshUserPrivateKey(credentialsId: "DeploymentSSHKey", keyFileVariable: 'keyfile')]) {
-				sh 'ssh -i ${keyfile} -o StrictHostKeyChecking=no deployment@192.168.0.118 "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"'
-				sh 'ssh -i ${keyfile} -o StrictHostKeyChecking=no deployment@192.168.0.118 docker pull mhilham987/nodejsgoof:0.1'
-				sh 'ssh -i ${keyfile} -o StrictHostKeyChecking=no deployment@192.168.0.118 docker rm -f mongodb'
-				sh 'ssh -i ${keyfile} -o StrictHostKeyChecking=no deployment@192.168.0.118 docker run -d --name mogodb -p 27017:27017 mongo:3'
-				sh 'ssh -i ${keyfile} -o StrictHostKeyChecking=no deployment@192.168.0.118 docker rm -f nodejsgoof'
-				sh 'ssh -i ${keyfile} -o StrictHostKeyChecking=no deployment@192.168.0.118 docker run -it -d --name nodejsgoof --network host mhilham987/nodejsgoof:0.1'
+				sh 'ssh -i ${keyfile} -o StrictHostKeyChecking=no deployment@192.168.0.119 "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"'
+				sh 'ssh -i ${keyfile} -o StrictHostKeyChecking=no deployment@192.168.0.119 docker pull mhilham987/nodejsgoof:0.1'
+				sh 'ssh -i ${keyfile} -o StrictHostKeyChecking=no deployment@192.168.0.119 docker rm -f mongodb'
+				sh 'ssh -i ${keyfile} -o StrictHostKeyChecking=no deployment@192.168.0.119 docker run -d --name mogodb -p 27017:27017 mongo:3'
+				sh 'ssh -i ${keyfile} -o StrictHostKeyChecking=no deployment@192.168.0.119 docker rm -f nodejsgoof'
+				sh 'ssh -i ${keyfile} -o StrictHostKeyChecking=no deployment@192.168.0.119 docker run -it -d --name nodejsgoof --network host mhilham987/nodejsgoof:0.1'
 
 				}
                         }
